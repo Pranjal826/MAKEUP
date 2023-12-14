@@ -1,0 +1,39 @@
+<div class="div1">
+  <h3>SANA</h3>
+  <div class="nav">
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/gallery">Gallery</a>
+      <a href="/contact">Contact</a>
+      <a href="/news">News</a>
+      <% if(admin && admin.accounttype && admin.accounttype === "Seller") { %>
+        <a href="/addproducts">Sell Product</a>
+        <a href="/seller">Your Selling</a>
+        <a href="/requestedproducts">Requested Products</a>
+      <% } else { %>
+        <a href="/explore">Explore Product</a>
+
+      <% } %>
+      
+      <% if(admin){%>
+        <a href="/logout">Logout</a>
+      <% } else {%>
+        <a href="/signin">Signin</a>
+      <% }%>
+    </nav>
+    <div class="icons">
+      <a href="/profile"><i class="fa-regular fa-user"></i></a> 
+      <% if(admin && admin.accounttype && admin.accounttype === "Buyer") { %>
+        <a href="/viewcart"><i class="fa-solid fa-cart-shopping"></i></a> 
+      <% } %>
+      <i class="fa-solid fa-magnifying-glass"></i>
+
+    </div>
+  </div>
+  <div class="icon-bar" onclick="toggleMenu()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+</div>

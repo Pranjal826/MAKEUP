@@ -1,0 +1,24 @@
+body {
+    cursor: none; /* Hide the default cursor */
+  }
+
+  .custom-cursor {
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    background-color: #ff69b4; /* Pink color for the brush */
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.2s ease-out;
+    mix-blend-mode: multiply; /* Add a blending mode for a more subtle effect */
+    background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.sIwKZtWlzMS0bsZ2d_6SSAHaEI%26pid%3DApi&f=1&ipt=abc625ffd94e4bba73724778fb76ac9771ce34b72ab72a3bc00f30c906a0f14c&ipo=images'); /* Replace with your brush image */
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  /* Add animation for the cursor */
+  .custom-cursor.active {
+    transform: scale(1.5); /* Set your preferred scale */
+  }

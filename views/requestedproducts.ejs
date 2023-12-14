@@ -1,0 +1,33 @@
+<!-- requestedproducts.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requested Products</title>
+</head>
+<body>
+    <% products.forEach(shippingInfo => { %>
+        <div class="shipping-info">
+            <h2>Shipping Address</h2>
+            <p>Address: <%= shippingInfo.address %></p>
+            <p>City: <%= shippingInfo.city %></p>
+            <!-- Add other address fields as needed -->
+    
+            <h2>Products Requested</h2>
+            <% products.forEach(productId => { %>
+                <div class="product-info">
+                    <p>Product Name: <%= productsById[productId].productName %></p>
+                    <p>Description: <%= productsById[productId].productDescription %></p>
+                    <p>Price: <%= productsById[productId].productPrice %></p>
+                    <!-- Add other product information fields as needed -->
+                </div>
+            <% }); %>
+        </div>
+    <% }); %>
+    
+    <a href="/logout">Logout</a>
+</body>
+</html>
