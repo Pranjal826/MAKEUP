@@ -47,6 +47,10 @@ const shippingInfoSchema = new mongoose.Schema({
     type: Number,
     required: true,
   }],
+  deliveryStatus:{
+    type:String,
+    default:"To be set by seller"
+  }
 });
 
 const ShippingInfo = mongoose.model('ShippingInfo', shippingInfoSchema);

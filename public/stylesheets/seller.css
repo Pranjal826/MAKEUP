@@ -12,10 +12,13 @@ body {
   }
   
   h1 {
-    margin-bottom: 30px;
+    margin-top: 30px;
     color: #ff69b4; /* Pink color for emphasis */
   }
-  
+  .buttons{
+    display: flex;
+    justify-content: space-evenly;
+  }
   .card {
     background-color: #fff;
     border-radius: 12px;

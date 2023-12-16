@@ -61,8 +61,10 @@ body {
   
   .explore {
     padding: 20px;
-    display: flex;
-    flex-direction: column;
+    width: 80%;
+    transform: translate(5vw,25vh);
+
+    float: right;
     align-items: center;
   }
   .explore>h1{
@@ -72,7 +74,7 @@ body {
   .explore-products {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
   }
   
   h1 {
@@ -101,7 +103,8 @@ body {
   
   img {
     margin-top: 15px;
-    max-width: 100%;
+    width: 150px;
+    height: 200px;
     height: auto;
     border-radius: 8px;
   }
@@ -196,6 +199,7 @@ body {
         align-items: center;
         margin-top:40vh;
         width: initial;
+        transform: translate(0,0);
     }
     .explore-products{
         flex-direction: column;

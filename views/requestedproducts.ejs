@@ -1,33 +1,55 @@
-<!-- requestedproducts.ejs -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheets/nav.css">
+    <link rel="stylesheet" href="stylesheets/requested.css">
+    <link rel="stylesheet" href="stylesheets/cursor.css">
     <title>Requested Products</title>
 </head>
 <body>
-    <% products.forEach(shippingInfo => { %>
-        <div class="shipping-info">
-            <h2>Shipping Address</h2>
-            <p>Address: <%= shippingInfo.address %></p>
-            <p>City: <%= shippingInfo.city %></p>
-            <!-- Add other address fields as needed -->
-    
-            <h2>Products Requested</h2>
-            <% products.forEach(productId => { %>
-                <div class="product-info">
-                    <p>Product Name: <%= productsById[productId].productName %></p>
-                    <p>Description: <%= productsById[productId].productDescription %></p>
-                    <p>Price: <%= productsById[productId].productPrice %></p>
-                    <!-- Add other product information fields as needed -->
+    <%-include('./partials/nav') %>
+    <%-include('./partials/customcursor') %>
+    <div class="container">
+        <% if (shippingInfoArray.length === 0) { %>
+            <p>No items</p>
+        <% } else { %>
+            <% shippingInfoArray.forEach(shippingInfo => { %>
+                <div class="shipping-info">
+                    <h2>Shipping Address</h2>
+                    <p>User Name: <%= shippingInfo.name %></p>
+                    <p>Address: <%= shippingInfo.address %></p>
+                    <p>City: <%= shippingInfo.city %></p>
+                    <p>State: <%= shippingInfo.state %></p>
+                    <p>Pincode: <%= shippingInfo.pincode %></p>
+                    <p>Phone: <%= shippingInfo.phone %></p>
+        
+                    <h2>Products Requested By user</h2>
+                    <% shippingInfo.productIds.forEach(productId => { %>
+                        <div class="product-info">
+                            <p>Product Name: <%= productId.productName %></p>
+                            <p>Description: <%= productId.productDescription %></p>
+                            <p>Price: <%= productId.productPrice %></p>
+                        </div>
+                    <% }); %>
+                    <div class="form-container">
+                        <form action="/updateDeliveryStatus" method="post">
+                            <input type="hidden" name="shippingInfoId" value="<%= shippingInfo._id %>">
+                            <label for="deliveryStatus">Update Delivery Status:</label>
+                            <select name="deliveryStatus" id="deliveryStatus">
+                                <option value="Pending" <%= shippingInfo.deliveryStatus === 'Pending' ? 'selected' : '' %>>Pending</option>
+                                <option value="Shipped" <%= shippingInfo.deliveryStatus === 'Shipped' ? 'selected' : '' %>>Shipped</option>
+                                <option value="Delivered" <%= shippingInfo.deliveryStatus === 'Delivered' ? 'selected' : '' %>>Delivered</option>
+                            </select>
+                            <button type="submit">Update Status</button>
+                        </form>
+                    </div>
                 </div>
             <% }); %>
-        </div>
-    <% }); %>
-    
-    <a href="/logout">Logout</a>
+        <% } %>
+    </div>
+   <script src="javascripts/cursor.js"></script>
 </body>
 </html>

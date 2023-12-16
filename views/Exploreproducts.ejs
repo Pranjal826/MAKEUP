@@ -53,27 +53,29 @@
   
   <div class="explore">
     <h1>Explore Makeup Products</h1>
-    <div class="explore-products">
-      <% if (products.length > 0) { %>
-        <% products.forEach(product => { %>
-          <div class="product-card">
-            <strong>Product Name:</strong> <%= product.productName %><br>
-            <strong>Description:</strong> <%= product.productDescription %><br>
-            <strong>Price:</strong> <%= product.productPrice %><br>
-            <img src="<%= product.productImage %>" alt="<%= product.productName %> Image">
-    
-            <form action="/addtocart" method="post">
-              <input type="hidden" name="productId" value="<%= product._id %>">
-              <label for="quantity">Quantity:</label>
-              <input type="number" name="quantity" id="quantity" min="1" value="1">
-              <button class="add-to-cart-btn" type="submit">Add to Cart</button>
-            </form>
-          </div>
-        <% }); %>
-      <% } else { %>
-        <p>No makeup products available.</p>
-      <% } %>
-    </div>
+  <!-- Update the loop in your existing HTML -->
+<div class="explore-products">
+  <% if (products.length > 0) { %>
+    <% products.forEach(product => { %>
+      <div class="product-card">
+        <strong>Product Name:</strong> <%= product.productName %><br>
+        <strong>Description:</strong> <%= product.productDescription %><br>
+        <strong>Price:</strong> <%= product.productPrice %><br>
+        <img src="<%= product.productImage %>" alt="<%= product.productName %> Image">
+  
+        <form action="/addtocart" method="post">
+          <input type="hidden" name="productId" value="<%= product._id %>">
+          <label for="quantity">Quantity:</label>
+          <input type="number" name="quantity" id="quantity" min="1" value="1">
+          <button class="add-to-cart-btn" type="submit">Add to Cart</button>
+        </form>
+      </div>
+    <% }); %>
+  <% } else { %>
+    <p>No makeup products available.</p>
+  <% } %>
+</div>
+
  
   </div>
   

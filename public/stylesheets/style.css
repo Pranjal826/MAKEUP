@@ -53,7 +53,9 @@ a:hover {
   font-size: 50px;
   font-weight: bold;
   color: rgb(152, 93, 93);
-  margin-bottom: 20px;
+  margin-top: 20px;
+  font-family: 'Cedarville Cursive', cursive;
+
 }
 
 .inner-div2 p {
@@ -150,6 +152,8 @@ a:hover {
   font-weight: bold;
   color: rgb(222, 177, 177);
   margin-bottom: 20px;
+  font-family: 'Cedarville Cursive', cursive;
+
 }
 
 .innerone>p {
@@ -529,7 +533,17 @@ h4 {
   text-align: center;
   gap: 50px;
 }
+.div7 h1{
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  color: #3f3838;
 
+}
+.div7 p{
+  max-width: 600px;
+  line-height: 1.5;
+  font-family: 'Open Sans', sans-serif;
+}
 .cards {
   display: flex;
   justify-content: space-evenly;
