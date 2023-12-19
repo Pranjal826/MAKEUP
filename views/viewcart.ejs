@@ -120,21 +120,19 @@ h1 {
   <br>
   <br>
   <h1>View Cart</h1>
-
   <% if (cartItems.length > 0) { %>
     <div class="cart-items-container">
       <% cartItems.forEach(cartItem => { %>
-        <div class="cart-item">
-          <% if (cartItem.productId) { %>
+        <% if (cartItem.productId && cartItem.productId.productName) { %>
+          <div class="cart-item">
             <div class="product-info">
               <p><strong>Product Name:</strong> <%= cartItem.productId.productName %></p>
-              <p><strong>Description:</strong> <%= cartItem.productId.productDescription %></p>
-              <p><strong>Price:</strong> <%= cartItem.productId.productPrice %></p>
-              <p><strong>Quantity:</strong> <%= cartItem.quantity %></p>
+              <p><strong>Description:</strong> <%= cartItem.productId.productDescription || 'N/A' %></p>
+              <p><strong>Price:</strong> <%= cartItem.productId.productPrice || 'N/A' %></p>
+              <p><strong>Quantity:</strong> <%= cartItem.quantity || 'N/A' %></p>
             </div>
             <div class="product-image">
-              <img src="<%= cartItem.productId.productImage %>"
-                alt="<%= cartItem.productId.productName %> Image">
+              <img src="<%= cartItem.productId.productImage %>" alt="<%= cartItem.productId.productName %> Image">
             </div>
             <div class="action-buttons">
               <form action="/deleteCartItem" method="post">
@@ -142,13 +140,11 @@ h1 {
                 <button type="submit" class="delete-btn">Delete</button>
               </form>
             </div>
-          <% } else { %>
-            <p class="unavailable-info">Product information not available</p>
-          <% } %>
-        </div>
+          </div>
+        <% } %>
       <% }); %>
     </div>
-
+  
     <div class="total-price-container">
       <p><strong>Total Price:</strong> <%= calculateTotalPrice(cartItems) %></p>
       <a href="/shippingaddress?totalPrice=<%= calculateTotalPrice(cartItems) %>"><button class="checkout-btn">Checkout</button></a>
@@ -156,6 +152,7 @@ h1 {
   <% } else { %>
     <p>No items in the cart.</p>
   <% } %>
+  
   <script>
     function checkout() {
       console.log('Checkout button clicked');

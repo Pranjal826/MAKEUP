@@ -5,7 +5,8 @@ const router = express.Router();
 const CartItem = require('../models/addtocart');
 const Product = require('../models/products'); 
 const calculateTotalPrice = require('./pricecalculate'); // Make sure to import the function
-router.get('/viewcart', async (req, res) => {
+const isLoggedIn = require('./isLoggedIn');
+router.get('/viewcart',isLoggedIn, async (req, res) => {
   try {
     const userId = req.user._id;
     const cartItems = await CartItem.find({ userId }).populate('productId');

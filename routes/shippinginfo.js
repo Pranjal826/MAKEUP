@@ -11,18 +11,19 @@ const Product = require('../models/products');
 const mongoose=require('mongoose')
 passport.use(new LocalStrategy(User.authenticate()));
 
-router.get('/shippingaddress', async (req, res) => {
+router.get('/shippingaddress',isLoggedIn, async (req, res) => {
   try {
     const products = await CartItem.find({ userId: req.user._id }).populate('productId');
     const totalPrice = req.query.totalPrice || 0;
     console.log('Fetched Cart Items:', products);
+    
     res.render('shippingaddress', { user: req.user, products, admin: req.user,totalPrice });
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal Server Error');
   }
 });
-router.post('/shippingaddress', async (req, res) => {
+router.post('/shippingaddress',isLoggedIn, async (req, res) => {
   try {
     const { name, address, city, state, pincode, phone, requestedProducts, quantities } = req.body;
     const userId = req.user._id;

@@ -16,6 +16,7 @@ var explore=require('./routes/Exploreproducts')
 const addToCartRouter = require('./routes/addtocart');
 const viewCartRouter = require('./routes/viewcart');
 const deleteCartItem=require('./routes/deletecart')
+const success=require('./routes/success')
 var app = express();
 const session=require('express-session')
 const passport = require("passport");
@@ -62,11 +63,12 @@ app.use('/',addToCartRouter)
 app.use('/', viewCartRouter);
 app.use('/',SellerProducts)
 app.use('/',deleteCartItem)
-app.use("/", forgetRoutes);
-app.use("/", sendMail);
+app.use('/', forgetRoutes);
+app.use('/', sendMail);
 app.use('/',updateproduct);
 app.use('/',shipping)
 app.use('/',deletedProduct)
+app.use('/',success)
 app.use('/',requestedProducts)
 app.use('/',logout);
 // catch 404 and forward to error handler
