@@ -50,6 +50,10 @@ const shippingInfoSchema = new mongoose.Schema({
   deliveryStatus:{
     type:String,
     default:"To be set by seller"
+  },
+  totalPriceForItem:{
+    type:Number,
+    required:true
   }
 });
 

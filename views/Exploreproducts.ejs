@@ -67,6 +67,7 @@
           <input type="hidden" name="productId" value="<%= product._id %>">
           <label for="quantity">Quantity:</label>
           <input type="number" name="quantity" id="quantity" min="1" value="1">
+          <input type="hidden" name="productPrice" value="<%= product.productPrice %>"> <!-- Add this line -->
           <button class="add-to-cart-btn" type="submit">Add to Cart</button>
         </form>
       </div>

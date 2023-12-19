@@ -14,8 +14,9 @@ passport.use(new LocalStrategy(User.authenticate()));
 router.get('/shippingaddress', async (req, res) => {
   try {
     const products = await CartItem.find({ userId: req.user._id }).populate('productId');
+    const totalPrice = req.query.totalPrice || 0;
     console.log('Fetched Cart Items:', products);
-    res.render('shippingaddress', { user: req.user, products, admin: req.user });
+    res.render('shippingaddress', { user: req.user, products, admin: req.user,totalPrice });
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal Server Error');
@@ -28,16 +29,16 @@ router.post('/shippingaddress', async (req, res) => {
     const shippingInfoArray = [];
 
     if (!Array.isArray(requestedProducts) || !Array.isArray(quantities)) {
-      // Handle the case where only one product is added
-      const productId = requestedProducts;
-      const productQuantity = quantities;
+      const cartItem = await CartItem.findOne({ userId, productId: requestedProducts }).populate('productId');
 
-      const cartItem = await CartItem.findOne({ userId, productId }).populate('productId');
       if (!cartItem) {
         return res.status(404).send('CartItem not found');
       }
 
       const sellerId = cartItem.productId.uploadedBy;
+      const productPrice = cartItem.productId.productPrice;
+      const productQuantity = quantities;
+      const totalPriceForItem = productPrice * productQuantity;
 
       const newShippingInfo = new ShippingInfo({
         name,
@@ -48,13 +49,13 @@ router.post('/shippingaddress', async (req, res) => {
         phone,
         userId,
         sellerId,
-        productIds: [productId],
+        productIds: [requestedProducts],
         quantities: [productQuantity],
+        totalPriceForItem,
       });
 
       shippingInfoArray.push(newShippingInfo);
     } else {
-      // Handle the case where multiple products are added
       for (let i = 0; i < requestedProducts.length; i++) {
         const productId = requestedProducts[i];
         const productQuantity = quantities[i];
@@ -65,6 +66,8 @@ router.post('/shippingaddress', async (req, res) => {
         }
 
         const sellerId = cartItem.productId.uploadedBy;
+        const productPrice = cartItem.productId.productPrice;
+        const totalPriceForItem = productPrice * productQuantity;
 
         const newShippingInfo = new ShippingInfo({
           name,
@@ -77,6 +80,7 @@ router.post('/shippingaddress', async (req, res) => {
           sellerId,
           productIds: [productId],
           quantities: [productQuantity],
+          totalPriceForItem,
         });
 
         shippingInfoArray.push(newShippingInfo);

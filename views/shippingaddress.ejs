@@ -20,6 +20,7 @@
     <br></br>
 
   <h1>Shipping Address</h1>
+  
     <form action="/shippingaddress" method="post">
 
         <label for="name">Name:</label>
@@ -40,6 +41,9 @@
         <label for="phone">Phone:</label>
         <input type="text" id="phone" name="phone" required>
       
+        <h2>Total Price</h2>
+        <p><strong>Total Price:</strong> <%= totalPrice %></p>
+
         <h2>Products Requested</h2>
         <div class="product-requested">
             <% products.forEach(cartItem => { %>
@@ -50,8 +54,11 @@
 
                     </label>
                     <img src="<%= cartItem.productId.productImage %>" alt="<%= cartItem.productId.productName %> Image">
+
+
                 </div>
-                <input type="hidden" name="requestedProducts" value="<%= cartItem.productId._id %>">
+                <input type="hidden" name="requestedProducts" value="<%= cartItem.productId._id %>"/>
+                <input type="hidden" name="totalPrice" value="<%=totalPrice%>"/>
             <% }); %>
         </div>
     

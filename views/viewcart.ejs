@@ -151,9 +151,8 @@ h1 {
 
     <div class="total-price-container">
       <p><strong>Total Price:</strong> <%= calculateTotalPrice(cartItems) %></p>
-     <a href="/shippingaddress"><button class="checkout-btn">Checkout</button></a> 
+      <a href="/shippingaddress?totalPrice=<%= calculateTotalPrice(cartItems) %>"><button class="checkout-btn">Checkout</button></a>
     </div>
-
   <% } else { %>
     <p>No items in the cart.</p>
   <% } %>

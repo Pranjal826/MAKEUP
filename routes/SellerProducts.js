@@ -13,8 +13,7 @@ router.get('/seller', isLoggedIn, async (req, res) => {
       console.log(products)
       res.render('SellerProducts', { admin, products });
     } else {
-      // Redirect or render an error page if the user is not a valid seller
-      res.redirect('/'); // Redirect to the home page for now, adjust as needed
+      res.redirect('/'); 
     }
   } catch (error) {
     console.error(error);
