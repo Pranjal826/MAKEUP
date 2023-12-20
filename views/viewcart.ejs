@@ -107,6 +107,16 @@ h1 {
 .checkout-btn:hover {
   background-color: #d49a4d; /* Darker orange on hover */
 }
+.no-item-text{
+  text-align: center;
+  color: #b36b88;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
 
  </style>
 </head>
@@ -150,7 +160,7 @@ h1 {
       <a href="/shippingaddress?totalPrice=<%= calculateTotalPrice(cartItems) %>"><button class="checkout-btn">Checkout</button></a>
     </div>
   <% } else { %>
-    <p>No items in the cart.</p>
+    <p class="no-item-text">No items in the cart.</p>
   <% } %>
   
   <script>

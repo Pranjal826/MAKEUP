@@ -4,7 +4,7 @@ body {
     padding: 0;
     background-color: #f8f8f8;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
     width: 100%;
   }
@@ -172,6 +172,7 @@ body {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         position: fixed;
         left: 0;
+        z-index: 11;
         
     }
     .sidebar {
@@ -185,6 +186,8 @@ body {
         background-color: #fff;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         position: fixed;
+        z-index: 11;
+
         left: -200px; /* Initially off-screen */
         transition: left 0.4s ease-in-out; /* Add transition property */
       }

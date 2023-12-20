@@ -4,13 +4,43 @@ tl.from(".div1>h3, nav>a, .icons>i", {
   y: -100,
   duration: 1,
   delay: 0.4,
-  opacity: 0,
   stagger: 0.5,
   backgroundColor: "red",
 });
+ tl = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".inner-div3",
+    start: "top center",
+    end: "bottom center",
+    scrub: 1,
+  },
+});
+
+tl.to(".inner-div3", { opacity: 1, transform: "translateY(0)", duration: 1 })
+  .to(".innerone", { opacity: 1, transform: "translateY(0)", duration: 1 }, "-=0.5")
+  .to(".read", { opacity: 1, transform: "translateY(0)", duration: 1 }, "-=0.5");
 
 // Section 2: ScrollTrigger for Box Animations
 gsap.registerPlugin(ScrollTrigger);
+
+gsap.to('.read', {
+  scale: 1.1,
+  duration: 1,
+  yoyo: true,
+  repeat: -1, // Infinite loop
+});
+gsap.from('.images', {
+  opacity: 0,
+  y: 50,
+  stagger: 0.2, // Add stagger for a sequential animation
+  duration: 1,
+  scrollTrigger: {
+    trigger: '.images',
+    start: 'top 80%',
+    end: 'top 50%',
+    toggleActions: 'play none none reverse',
+  },
+});
 
 const boxes = document.querySelectorAll('.box');
 const boxAnimations = ["animate__bounceInLeft", "animate__fadeIn", "animate__flipInX"];
@@ -99,7 +129,7 @@ gsap.from('.upper, .lower-one, .lower-two, .lower-three', {
 });
 
 tL.from(".div7 h1", { opacity: 0, y: 50, duration: 1 });
-tL.from(".card, .div8", { opacity: 0, y: 90, stagger: 0.5, duration: 0.5 });
+tL.from(".card, .div8", { opacity: 0, y: 90, stagger: 1, duration: 4 });
 
 // Section 5: Additional Animations
 gsap.from('.lower-icons', {

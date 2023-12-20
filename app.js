@@ -12,6 +12,7 @@ var profile=require('./routes/Profile')
 var logout=require('./routes/Logout')
 var SellerProducts=require('./routes/SellerProducts')
 var addproducts=require('./routes/addproduct')
+const contact=require('./routes/contact')
 var explore=require('./routes/Exploreproducts')
 const addToCartRouter = require('./routes/addtocart');
 const viewCartRouter = require('./routes/viewcart');
@@ -26,6 +27,7 @@ const sendMail=require('./routes/sendmail')
 const updateproduct=require('./routes/updateproduct')
 const shipping=require('./routes/shippinginfo')
 const deletedProduct=require('./routes/deleteproduct')
+const orders=require('./routes/orders')
 const requestedProducts=require('./routes/requestedproducts')
 const flash = require('express-flash');
 
@@ -69,7 +71,9 @@ app.use('/',updateproduct);
 app.use('/',shipping)
 app.use('/',deletedProduct)
 app.use('/',success)
+app.use('/',contact)
 app.use('/',requestedProducts)
+app.use('/',orders)
 app.use('/',logout);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
