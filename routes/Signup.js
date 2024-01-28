@@ -101,8 +101,8 @@ router.post("/signup", upload.single('dp'), async function (req, res, next) {
 });
 
 router.get("/signup", function (req, res, next) {
-    // Assuming you are using flash messages
-    res.render("signup", {admin: req.user });
+    console.log('Views Directory:', router.get('views'));
+    res.render("Signup", {admin: req.user });
 });
 
 module.exports = router;
