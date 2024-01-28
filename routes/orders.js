@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const shippingorders = require('../models/shippinginfo');
+const isLoggedIn = require('./isLoggedIn');
 
-router.get('/orders', async (req, res) => {
+router.get('/orders',isLoggedIn, async (req, res) => {
     try {
         const orders = await shippingorders.find({ userId: req.user._id }).populate('productIds').lean();
         console.log(orders);

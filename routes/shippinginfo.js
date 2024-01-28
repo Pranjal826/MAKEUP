@@ -9,7 +9,6 @@ const isLoggedIn = require('./isLoggedIn');
 const CartItem = require('../models/addtocart'); // Updated import
 const Product = require('../models/products');
 const mongoose=require('mongoose')
-passport.use(new LocalStrategy(User.authenticate()));
 
 router.get('/shippingaddress',isLoggedIn, async (req, res) => {
   try {

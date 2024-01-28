@@ -1,43 +1,38 @@
-var express = require('express');
-var router = express.Router();
-const multer = require('multer');
+const express = require('express');
+const router = express.Router();
 const path = require('path');
 const Product = require('../models/products');
 const User = require('../models/userModel');
+const isLoggedIn = require('./isLoggedIn');
+const imagekit = require('../utils/imageKit').initimagekit();
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './public/Products/');
-  },
-  filename: function (req, file, cb) {
-    const productId = new Date().toISOString().replace(/[-:.]/g, '');
-    const filename = productId + path.extname(file.originalname);
-    cb(null, filename);
-  },
-});
-
-const upload = multer({ storage: storage });
 
 router.get('/addproducts', (req, res) => {
-  res.render('addproduct',{admin:req.user});
+  res.render('addproduct', { admin: req.user });
 });
 
-router.post('/addproduct', upload.single('productImage'), async (req, res) => {
+router.post('/addproduct',isLoggedIn, async (req, res) => {
   try {
     const userId = req.user._id;
     const user = await User.findById(userId);
+
+    // Upload image to ImageKit
+    const imageKitResponse = await imagekit.upload({
+      file: req.files.productImage.data,
+      fileName: `${new Date().toISOString().replace(/[-:.]/g, '')}.jpg`,
+    });
 
     const newProduct = new Product({
       productName: req.body.productName,
       productDescription: req.body.productDescription,
       productPrice: req.body.productPrice,
-      productImage: req.file.path,
+      productImage: imageKitResponse.url,
       uploadedBy: user._id,
     });
 
     // Save the new product to the database
     const savedProduct = await newProduct.save();
-    res.send("Uploaded successfully");
+    res.send('Uploaded successfully');
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal Server Error');

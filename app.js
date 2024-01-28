@@ -1,6 +1,8 @@
+require('dotenv').config('./.env')
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+const fileupload=require('express-fileupload')
 require('./models/config')
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -30,14 +32,28 @@ const deletedProduct=require('./routes/deleteproduct')
 const orders=require('./routes/orders')
 const requestedProducts=require('./routes/requestedproducts')
 const flash = require('express-flash');
+const ErrorHandler = require('./utils/Errorhandler');
 
 // view engine setup
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use('/public', express.static('public'));
 app.use(flash());
+app.use(fileupload())
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
 
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch (error) {
+    done(error, null);
+  }
+});
 app.use(
   session({
       saveUninitialized: true,
@@ -47,8 +63,6 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -76,6 +90,11 @@ app.use('/',contact)
 app.use('/',requestedProducts)
 app.use('/',orders)
 app.use('/',logout);
+
+app.all("*", (req, res, next) => {
+  next(new ErrorHandler(`Requested url not found ${req.url} or soon it will be updated`, 404));
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

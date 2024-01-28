@@ -5,7 +5,6 @@ const User = require("../models/userModel");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const { escapeScriptTag } = require("../utils/security");
-passport.use(new LocalStrategy(User.authenticate()));
 router.post("/send-mail", async function (req, res, next) {
     try {
         const user = await User.findOne({ email: req.body.email });
