@@ -6,7 +6,7 @@ const flash = require('express-flash');
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 const path=require('path')
 router.get('/signup', (req, res, next) => {
-    res.render('signup', { admin: req.user });
+    res.render('Signup', { admin: req.user });
 });
 
 router.post('/signup', async (req, res, next) => {
