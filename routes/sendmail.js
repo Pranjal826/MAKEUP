@@ -26,7 +26,7 @@ function sendmailhandler(req, res, user) {
         port: 465,
         auth: {
             user: "pranjalshukla245@gmail.com",
-            pass: "yave tcdt eodj flll",
+            pass: "kwut mojg ajxs lhuf",
         },
     });
 
