@@ -882,6 +882,17 @@ footer{
     flex-direction: column;
     gap: 30px;
   }
+
+.div4-icons {
+  flex-direction: column;
+  justify-content: center;
+  gap: 50px;
+  align-items: center;
+  height: auto;
+}
+.icon-div4{
+  width: auto;
+}
   .div4-one,.div4-two{
     width: 100%;
     height: 50%;

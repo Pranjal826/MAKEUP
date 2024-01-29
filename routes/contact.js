@@ -2,10 +2,10 @@ const express=require('express')
 const router=express.Router()
 const contact=require('../models/contact')
 const isLoggedIn = require('./isLoggedIn')
-router.get('/contact',isLoggedIn,(req,res)=>{
+router.get('/contact',(req,res)=>{
     res.render('contact',{admin:req.user})
 })
-router.post('/contact',isLoggedIn,(req,res)=>{
+router.post('/contact',(req,res)=>{
     const newContact=new contact({
         name:req.body.name,
         email:req.body.email,
