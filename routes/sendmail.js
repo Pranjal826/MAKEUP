@@ -4,6 +4,7 @@ const nodemailer = require("nodemailer");
 const User = require("../models/userModel");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
+
 const { escapeScriptTag } = require("../utils/security");
 router.post("/send-mail", async function (req, res, next) {
     try {

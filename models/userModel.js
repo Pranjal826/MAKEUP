@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt=require('bcryptjs')
+const passportLocalMongoose = require("passport-local-mongoose");
 
 const userModel = new mongoose.Schema({
   username: {
@@ -32,6 +33,8 @@ const userModel = new mongoose.Schema({
   },
 
 });
+userModel.plugin(passportLocalMongoose);
+
 userModel.pre("save", function(next) {
   if (!this.isModified("password")) {
     return next();

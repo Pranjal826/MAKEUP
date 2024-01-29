@@ -31,6 +31,7 @@ const shipping=require('./routes/shippinginfo')
 const deletedProduct=require('./routes/deleteproduct')
 const orders=require('./routes/orders')
 const requestedProducts=require('./routes/requestedproducts')
+const about=require('./routes/about')
 const flash = require('express-flash');
 const ErrorHandler = require('./utils/Errorhandler');
 
@@ -87,6 +88,7 @@ app.use('/',shipping)
 app.use('/',deletedProduct)
 app.use('/',success)
 app.use('/',contact)
+app.use('/',about)
 app.use('/',requestedProducts)
 app.use('/',orders)
 app.use('/',logout);
