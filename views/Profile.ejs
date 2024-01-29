@@ -111,7 +111,7 @@
   <%-include('./partials/customcursor')%>
   <%-include('./partials/nav')%>
   <div class="profile-container">
-    <img class="profile-image" src="uploads/<%= user.dp %>" alt="Profile Picture">
+    <img class="profile-image" src="<%= user.dp %>" alt="Profile Picture">
     <h2><%= user.username %></h2>
     <p class="profile-info"><strong>Email:</strong> <%= user.email %></p>
     <p class="profile-info"><strong>Phone:</strong> <%= user.phone %></p>
