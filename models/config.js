@@ -1,14 +1,11 @@
-const mongoose=require('mongoose')
+const mongoose = require('mongoose');
+
 mongoose.connect(
-    'mongodb+srv://pranjalshukla245:RgiDeemJ5JkE7DGt@cluster0.vtjn0jv.mongodb.net/Makeup-Site?retryWrites=true&w=majority',
-    {
-      useUnifiedTopology: true,
-    }
-  )
-.then(()=>{
-    console.log('connected to db')
-}
+  'mongodb+srv://pranjalshukla245:cdImBMeclOAfbR6X@cluster0.vtjn0jv.mongodb.net/Makeup-Site?retryWrites=true&w=majority'
 )
-.catch((err)=>{
-    console.log(err)
-})
+  .then(() => {
+    console.log('Connected to MongoDB');
+  })
+  .catch((err) => {
+    console.error('Error connecting to MongoDB:', err);
+  });
