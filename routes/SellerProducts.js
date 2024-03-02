@@ -11,7 +11,7 @@ router.get('/seller', isLoggedIn, async (req, res) => {
     if (admin && admin.accounttype === 'Seller') {
         const products = await Product.find({ uploadedBy: admin._id });
       console.log(products)
-      res.render('SellerProducts', { admin, products });
+      res.render('Sellerproducts', { admin, products });
     } else {
       res.redirect('/'); 
     }
